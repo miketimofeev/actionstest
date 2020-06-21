@@ -9,9 +9,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: test script
         run: |
-            set -e
-            echo "tell application \"System Events\"
-            click at {123,456}
-            end tell
-            " > b.scpt
-            osascript b.scpt
+          sudo osascript -e 'tell application "Finder" to close windows'
