@@ -9,4 +9,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: test script
         run: |
-          sudo osascript -e 'tell application "Finder" to close windows'
+          sudo osascript -e 'tell application "Finder" to close windows' > script.b && osascript script.b
