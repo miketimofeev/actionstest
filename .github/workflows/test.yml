@@ -13,4 +13,4 @@ jobs:
           tar xvzf oc.tar.gz
           rm oc.tar.gz
           sudo mv oc /usr/local/bin
-          echo "oc CLI $(oc --version)"
+          echo "oc CLI $(oc version)"
