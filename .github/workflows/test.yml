@@ -13,4 +13,5 @@ jobs:
           tar xvzf oc.tar.gz
           rm oc.tar.gz
           sudo mv oc /usr/local/bin
+          echo "123"
           oc version
