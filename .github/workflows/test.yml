@@ -4,9 +4,13 @@ on: [push]
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: test script
+      - name: install oc4
         run: |
-          echo "tell application \"Finder\" to close windows" > script.b && osascript script.b
+          curl "https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz" > oc.tar.gz
+          tar xvzf oc.tar.gz
+          rm oc.tar.gz
+          sudo mv oc /usr/local/bin
+          echo "oc CLI ($(oc --version 2>&1))"
