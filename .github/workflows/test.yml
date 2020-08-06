@@ -3,15 +3,39 @@ name: CI
 on: [push]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  job1:
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: install oc4
+      - name: test yarn
         run: |
-          curl "https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz" > oc.tar.gz
-          tar xvzf oc.tar.gz
-          rm oc.tar.gz
-          sudo mv oc /usr/local/bin
-          echo "123"
-          oc version
+          git clone https://github.com/vercel/vercel
+          cd vercel
+          yarn install
+  job2:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: test yarn
+        run: |
+          git clone https://github.com/vercel/vercel
+          cd vercel
+          yarn install
+  job3:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: test yarn
+        run: |
+          git clone https://github.com/vercel/vercel
+          cd vercel
+          yarn install
+  job4:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: test yarn
+        run: |
+          git clone https://github.com/vercel/vercel
+          cd vercel
+          yarn install
