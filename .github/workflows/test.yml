@@ -4,38 +4,10 @@ on: [push]
 
 jobs:
   job1:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: test yarn
+      - name: Test python vtk
         run: |
-          git clone https://github.com/vercel/vercel
-          cd vercel
-          yarn install
-  job2:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: test yarn
-        run: |
-          git clone https://github.com/vercel/vercel
-          cd vercel
-          yarn install
-  job3:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: test yarn
-        run: |
-          git clone https://github.com/vercel/vercel
-          cd vercel
-          yarn install
-  job4:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: test yarn
-        run: |
-          git clone https://github.com/vercel/vercel
-          cd vercel
-          yarn install
+          sudo apt-get update && sudo apt-get install python3-pip python3-pytest python3-pandas python3-scipy python3-h5py python3-vtk7
+          python -c 'import vtk'
