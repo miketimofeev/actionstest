@@ -3,10 +3,14 @@ name: CI
 on: [push]
 
 jobs:
-  job1:
-    runs-on: self-hosted
+  macos:
+    runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
-      - name: test python
+      - name: install yq
         run: |
-          python -c "import sys; print(sys.stdout.encoding); print('汉字')"
+          brew install yq
+      - name: test yq
+        run: |
+          yq --version
+        shell: pwsh
