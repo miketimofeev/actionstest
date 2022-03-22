@@ -4,13 +4,11 @@ on: [push]
 
 jobs:
   macos:
-    runs-on: macOS-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: install yq
-        run: |
-          brew install yq
-      - name: test yq
-        run: |
-          yq --version
-        shell: pwsh
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            autotools
