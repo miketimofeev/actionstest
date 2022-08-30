@@ -4,13 +4,27 @@ on: [push]
 
 jobs:
   macos:
-    runs-on: ubuntu-18.04
+    runs-on: macOS-12
     steps:
       - uses: actions/checkout@v2
       - name: install yq
         run: |
-          brew install yq
-      - name: test yq
-        run: |
-          yq --version
-        shell: pwsh
+         brew services list
+         netstat -anvp tcp | awk 'NR<3 || /LISTEN/'
+         brew services start postgresql
+         brew services list
+         netstat -anvp tcp | awk 'NR<3 || /LISTEN/'
+          rm -rf /usr/local/var/postgres
+          initdb /usr/local/var/postgres
+          pg_ctl -D /usr/local/var/postgres start
+          echo "Creating the database [new_test_db]"
+          createdb new_test_db
+          echo "Creating the table [test_table]"
+          psql -U runner -d new_test_db -c "CREATE TABLE test_table(fake_id int PRIMARY KEY, fake_desc varchar(10));"
+          echo "Inserting into the [test_table]"
+          psql -d new_test_db -c "INSERT INTO test_table VALUES (1, 'Some_Desc');"
+          psql -d new_test_db -c "SELECT * FROM test_table;"
+          echo "Dropping the table"
+          psql -d new_test_db -c "DROP TABLE test_table;"
+          echo "Dropping the database"
+          dropdb new_test_db
